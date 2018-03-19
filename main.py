@@ -1,11 +1,11 @@
 
 # This is a test file for class
 
+import random
 import numpy as np
 from pandas import DataFrame
 
-np.random.seed(77)
-
+np.random.seed(3)
 class Team:
     """To define a team"""
     
@@ -150,7 +150,23 @@ class Group:
         while self.round < len(self.schedule):
             self.next_round()
 
+class Association:
 
+    def __init__(self, ID, teams):
+        self.ID = ID
+        self.teams = teams
+
+    def setup_groups(self, num_groups, end = 0):
+        self.num_groups = num_groups
+        self.end = end
+
+        if self.end != 0:
+            kick_list = random.sample(range(-1, self.end * -2 - 1, -1), self.end)
+            for index in sorted(kick_list):
+                del self.teams[index]
+            print(str(len(self.teams)))
+            for i in self.teams:
+                print(i.name)
 
 
 XXX = Team("NULL", 0)
@@ -206,7 +222,16 @@ PAK = Team("Pakistan", 203)
 
 # 
 
+AFC = Association("Asia", [IRN, AUS, JPN, KOR, CHN, SAU, UZB, PSE, SYR, ARE, IRQ, 
+    LBN, IND, QAT, OMN, VNM, TKM, KGZ, JOR, PRK, PHL, TJK, BHR, THA, TWN, YEM, MMR, 
+    HKG, AFG, MDV, IDN, NPL, SGP, KHM, KWT, MYS, LAO, MAC, BTN, MNG, TLS, GUM, BRN, 
+    BGD, LKA, PAK])
 
+AFC.setup_groups(10, 2)
+
+# group_a.setup_fixture()
+
+# group_a.finish_all_rounds()
 
 
 
