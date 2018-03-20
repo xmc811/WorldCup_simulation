@@ -5,8 +5,9 @@ import random
 import numpy as np
 from pandas import DataFrame
 import pandas as pd
+import string
 
-np.random.seed(3)
+np.random.seed(10)
 class Team:
     """To define a team"""
     
@@ -126,7 +127,7 @@ class Group:
         df[6] = df[4] - df[5]
         df[7] = df[1] * 3 + df[2]
 
-        df.columns = ['Team', 'W', 'D', 'L', 'GS', 'GA', 'GD', 'Pts']
+        df.columns = ['Team', 'W', 'D', 'L', 'GF', 'GA', 'GD', 'Pts']
 
         print(df.sort_values(by=['Pts','GD'], ascending=False))
 
@@ -158,23 +159,61 @@ class Association:
         self.ID = ID
         self.teams = teams
 
-    def setup_groups(self, num_groups, kick_num = 0):
+    def setup_groups(self, num_groups):
         self.num_groups = num_groups
-        self.kick_num = kick_num
+        self.kick_num = len(self.teams) % self.num_groups
         self.temp_teams = [i for i in self.teams]
 
         if self.kick_num != 0:
-            kick_list = random.sample(range(-1, self.kick_num * -2 - 1, -1), self.kick_num)
+            kick_list = random.sample(range(-1, self.kick_num * (-2) - 1, -1), self.kick_num)
             for index in sorted(kick_list):
                 del self.temp_teams[index]
+
         
-        print(str(len(self.teams)))
-        print(str(len(self.temp_teams)))
+        assoc_df = df[df['Assoc'] == self.ID]
+        code_list = assoc_df['Code'].tolist()
+        
+        x = self.num_groups
+        y = int(len(self.temp_teams) / x)
 
-        if len(self.temp_teams) % self.num_groups != 0:
-            print("Please adjust number of teams to be kicked.")
+        print(x)
+        print(y)
 
-        # else:
+        all_index = []
+        
+        for i in range(y):
+            b = list(np.random.permutation(x))
+            all_index.append(b)
+
+        group_name_list = [self.ID + "_Group_" + i for i in list(string.ascii_uppercase)]
+        
+        for m, n in zip(list(range(x)), group_name_list):
+           
+            group_team = []
+            
+            for i in range(y):
+                group_team.append(eval(code_list[all_index[i][m] + x * i]))
+
+            globals()[n] = Group(n, group_team)
+
+        group_names = group_name_list[:x]
+        
+        table = []
+
+        for k in group_names:
+            
+            team = []
+            
+            for l in eval(k).teams:
+                team.append(l.name)
+            table.append(team)
+        
+        grouping_df = DataFrame.from_records(table).transpose()
+
+        grouping_df.columns = group_names
+
+        print(grouping_df)
+
 
 # Load team data from file
 
@@ -184,82 +223,40 @@ column_names = ['Code', 'Rank', 'Name', 'Assoc']
 
 df.columns = column_names
 
+df = df.sort_values(by = ['Rank'])
+
 for u in column_names:
     globals()[u] = df[u].tolist()
 
 for u,v in zip(Code, zip(Name, Rank)):
     globals()[u] = Team(v[0], v[1])
 
-
-
-            
-
 XXX = Team("NULL", 0)
 
-# load AFC teams data
+# Construct associations
 
-IRN = Team("Iran", 33)
-AUS = Team("Australia", 37)
-JPN = Team("Japan", 55)
-KOR = Team("South Korea", 59)
-CHN = Team("China PR", 65)
-SAU = Team("Saudi Arabia", 69)
-UZB = Team("Uzbekistan", 72)
-PSE = Team("Palestine", 73)
-SYR = Team("Syria", 74)
-ARE = Team("UAE", 79)
-IRQ = Team("Iraq", 83)
-LBN = Team("Lebanon", 87)
-IND = Team("India", 99)
-QAT = Team("Qatar", 101)
-OMN = Team("Oman", 103)
-VNM = Team("Vietnam", 113)
-TKM = Team("Turkmenistan", 114)
-KGZ = Team("Kyrgyz", 115)
-JOR = Team("Jordan", 117)
-PRK = Team("North Korea", 119)
-PHL = Team("Philippines", 122)
-TJK = Team("Tajikistan", 124)
-BHR = Team("Bahrain", 125)
-THA = Team("Thailand", 129)
-TWN = Team("Chinese Taipei", 134)
-YEM = Team("Yemen", 140)
-MMR = Team("Myanmar", 142)
-HKG = Team("Hong Kong", 145)
-AFG = Team("Afghanistan", 148)
-MDV = Team("Maldives", 150)
-IDN = Team("Indonesia", 162)
-NPL = Team("Nepal", 165)
-SGP = Team("Singapore", 171)
-KHM = Team("Cambodia", 171)
-KWT = Team("Kuwait", 173)
-MYS = Team("Malaysia", 178)
-LAO = Team("Laos", 183)
-MAC = Team("Macau", 186)
-BTN = Team("Bhutan", 188)
-MNG = Team("Mongolia", 189)
-TLS = Team("Timor-Leste", 190)
-GUM = Team("Guam", 191)
-BRN = Team("Brunei", 193)
-BGD = Team("Bangladesh", 197)
-LKA = Team("Sri Lanka", 200)
-PAK = Team("Pakistan", 203)
+assoc_list = list(set(Assoc))
 
-# 
+for u in assoc_list:
+    tmp_df = df[df['Assoc'] == u]
+    tmp_code = tmp_df['Code'].tolist()
+    team_list = []
+    for v in tmp_code:
+        team_list.append(eval(v))
+    globals()[u] = Association(u, team_list)
 
 
 
-c = ["AAA", "BBB", "CCC"]
-d = ["Aaa", "Bbb", "Ccc"]
-e = [20, 30, 40]
+AFC.setup_groups(1)
 
+AFC_Group_A.setup_fixture()
 
-for u,v in zip(c, zip(d, e)):
-    globals()[u] = Team(v[0], v[1])
+AFC_Group_A.finish_all_rounds()
 
-print(AAA.rank)
-print(ARG.name)
-print(CAN.rank)
+# UEFA_Group_A.setup_fixture()
+
+# UEFA_Group_A.finish_all_rounds()
+
 
 
 # print(one)
