@@ -4,6 +4,7 @@
 import random
 import numpy as np
 from pandas import DataFrame
+import pandas as pd
 
 np.random.seed(3)
 class Team:
@@ -169,13 +170,27 @@ class Association:
         
         print(str(len(self.teams)))
         print(str(len(self.temp_teams)))
-        
-        print([i.name for i in self.temp_teams])
 
         if len(self.temp_teams) % self.num_groups != 0:
             print("Please adjust number of teams to be kicked.")
 
         # else:
+
+# Load team data from file
+
+df = pd.read_csv("rank_data.txt", sep='\t', header = None)
+
+column_names = ['Code', 'Rank', 'Name', 'Assoc']
+
+df.columns = column_names
+
+for u in column_names:
+    globals()[u] = df[u].tolist()
+
+for u,v in zip(Code, zip(Name, Rank)):
+    globals()[u] = Team(v[0], v[1])
+
+
 
             
 
@@ -232,23 +247,19 @@ PAK = Team("Pakistan", 203)
 
 # 
 
-AFC = Association("Asia", [IRN, AUS, JPN, KOR, CHN, SAU, UZB, PSE, SYR, ARE, IRQ, 
-    LBN, IND, QAT, OMN, VNM, TKM, KGZ, JOR, PRK, PHL, TJK, BHR, THA, TWN, YEM, MMR, 
-    HKG, AFG, MDV, IDN, NPL, SGP, KHM, KWT, MYS, LAO, MAC, BTN, MNG, TLS, GUM, BRN, 
-    BGD, LKA, PAK])
 
-AFC.setup_groups(10, 2)
 
 c = ["AAA", "BBB", "CCC"]
 d = ["Aaa", "Bbb", "Ccc"]
 e = [20, 30, 40]
 
-f = dict(zip(c, zip(d, e)))
 
-for u,v in f.items():
+for u,v in zip(c, zip(d, e)):
     globals()[u] = Team(v[0], v[1])
 
 print(AAA.rank)
+print(ARG.name)
+print(CAN.rank)
 
 
 # print(one)

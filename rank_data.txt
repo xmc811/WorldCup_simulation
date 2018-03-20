@@ -1,0 +1,211 @@
+AFG	148	Afghanistan	AFC
+ALB	58	Albania	UEFA
+ALG	60	Algeria	CAF
+ASA	194	American Samoa	OFC
+AND	130	Andorra	UEFA
+ANG	141	Angola	CAF
+AIA	206	Anguilla	CONCACAF
+ATG	139	Antigua and Barbuda	CONCACAF
+ARG	4	Argentina	CONMEBOL
+ARM	91	Armenia	UEFA
+ARU	180	Aruba	CONCACAF
+AUS	37	Australia	AFC
+AUT	28	Austria	UEFA
+AZE	127	Azerbaijan	UEFA
+BAH	206	Bahamas	CONCACAF
+BHR	125	Bahrain	AFC
+BAN	197	Bangladesh	AFC
+BRB	152	Barbados	CONCACAF
+BLR	93	Belarus	UEFA
+BEL	5	Belgium	UEFA
+BLZ	177	Belize	CONCACAF
+BEN	81	Benin	CAF
+BER	184	Bermuda	CONCACAF
+BHU	188	Bhutan	AFC
+BOL	47	Bolivia	CONMEBOL
+BIH	41	Bosnia Herzegovina	UEFA
+BOT	149	Botswana	CAF
+BRA	2	Brazil	CONMEBOL
+VGB	205	British Virgin	CONCACAF
+BRU	193	Brunei	AFC
+BUL	40	Bulgaria	UEFA
+BFA	56	Burkina Faso	CAF
+BDI	142	Burundi	CAF
+CAM	171	Cambodia	AFC
+CMR	51	Cameroon	CAF
+CAN	90	Canada	CONCACAF
+CPV	61	Cape Verde	CAF
+CAY	201	Cayman Islands	CONCACAF
+CTA	121	Central Africa	CAF
+CHA	168	Chad	CAF
+CHI	10	Chile	CONMEBOL
+CHN	65	China PR	AFC
+TPE	134	Chinese Taipei	AFC
+COL	13	Colombia	CONMEBOL
+COM	132	Comoros	CAF
+CGO	87	Congo	CAF
+COD	39	Congo DR	CAF
+COK	194	Cook Islands	OFC
+CRC	26	Costa Rica	CONCACAF
+CIV	71	Ivory Coast	CAF
+CRO	15	Croatia	UEFA
+CUB	182	Cuba	CONCACAF
+CUW	82	Curaçao	CONCACAF
+CYP	92	Cyprus	UEFA
+CZE	43	Czech	UEFA
+DEN	12	Denmark	UEFA
+DJI	187	Djibouti	CAF
+DMA	166	Dominica	CONCACAF
+DOM	163	Dominican Republic	CONCACAF
+ECU	65	Ecuador	CONMEBOL
+EGY	44	Egypt	CAF
+SLV	87	El Salvador	CONCACAF
+ENG	16	England	UEFA
+EQG	138	Equatorial Guinea	CAF
+ERI	206	Eritrea	CAF
+EST	86	Estonia	UEFA
+ETH	137	Ethiopia	CAF
+FRO	97	Faroe Islands	UEFA
+FIJ	168	Fiji	OFC
+FIN	68	Finland	UEFA
+FRA	9	France	UEFA
+MKD	75	Macedonia	UEFA
+GAB	95	Gabon	CAF
+GAM	164	Gambia	CAF
+GEO	101	Georgia	UEFA
+GER	1	Germany	UEFA
+GHA	54	Ghana	CAF
+GIB	206	Gibraltar	UEFA
+GRE	45	Greece	UEFA
+GRN	159	Grenada	CONCACAF
+GUM	191	Guam	AFC
+GUA	126	Guatemala	CONCACAF
+GUI	70	Guinea	CAF
+GNB	96	Guinea-Bissau	CAF
+GUY	159	Guyana	CONCACAF
+HAI	85	Haiti	CONCACAF
+HON	64	Honduras	CONCACAF
+HKG	145	Hong Kong	AFC
+HUN	50	Hungary	UEFA
+ISL	18	Iceland	UEFA
+IND	99	India	AFC
+IDN	162	Indonesia	AFC
+IRN	33	Iran	AFC
+IRQ	83	Iraq	AFC
+IRL	31	Ireland	UEFA
+ISR	94	Israel	UEFA
+ITA	14	Italy	UEFA
+JAM	49	Jamaica	CONCACAF
+JPN	55	Japan	AFC
+JOR	117	Jordan	AFC
+KAZ	136	Kazakhstan	UEFA
+KEN	105	Kenya	CAF
+KVX	176	Kosovo	UEFA
+KWT	173	Kuwait	AFC
+KGZ	115	Kyrgyz	AFC
+LAO	183	Laos	AFC
+LVA	131	Latvia	UEFA
+LIB	87	Lebanon	AFC
+LES	144	Lesotho	CAF
+LBR	135	Liberia	CAF
+LBY	99	Libya	CAF
+LIE	181	Liechtenstein	UEFA
+LTU	147	Lithuania	UEFA
+LUX	83	Luxembourg	UEFA
+MAC	186	Macau	AFC
+MAD	109	Madagascar	CAF
+MWI	123	Malawi	CAF
+MAS	178	Malaysia	AFC
+MDV	150	Maldives	AFC
+MLI	67	Mali	CAF
+MLT	185	Malta	UEFA
+MTN	104	Mauritania	CAF
+MRI	158	Mauritius	CAF
+MEX	17	Mexico	CONCACAF
+MDA	170	Moldova	UEFA
+MNG	189	Mongolia	AFC
+MNE	46	Montenegro	UEFA
+MSR	199	Montserrat	CONCACAF
+MAR	42	Morocco	CAF
+MOZ	105	Mozambique	CAF
+MYA	142	Myanmar	AFC
+NAM	111	Namibia	CAF
+NEP	165	Nepal	AFC
+NED	21	Netherlands	UEFA
+NCL	155	New Caledonia	OFC
+NZL	120	New Zealand	OFC
+NCA	116	Nicaragua	CONCACAF
+NIG	110	Niger	CAF
+NGA	52	Nigeria	CAF
+PRK	119	North Korea	AFC
+NIR	24	Northern Ireland	UEFA
+NOR	57	Norway	UEFA
+OMA	103	Oman	AFC
+PAK	203	Pakistan	AFC
+PLE	73	Palestine	AFC
+PAN	53	Panama	CONCACAF
+PNG	159	Papua New Guinea	OFC
+PAR	30	Paraguay	CONMEBOL
+PER	11	Peru	CONMEBOL
+PHI	122	Philippines	AFC
+POL	6	Poland	UEFA
+POR	3	Portugal	UEFA
+PUR	166	Puerto Rico	CONCACAF
+QAT	101	Qatar	AFC
+ROU	36	Romania	UEFA
+RUS	63	Russia	UEFA
+RWA	112	Rwanda	CAF
+SAM	194	Samoa	OFC
+SMR	204	San Marino	UEFA
+STP	179	São Tomé e Príncipe	CAF
+KSA	69	Saudi Arabia	AFC
+SCO	32	Scotland	UEFA
+SEN	27	Senegal	CAF
+SRB	34	Serbia	UEFA
+SEY	191	Seychelles	CAF
+SLE	98	Sierra Leone	CAF
+SIN	171	Singapore	AFC
+SVK	29	Slovakia	UEFA
+SVN	62	Slovenia	UEFA
+SOL	151	Solomon Islands	OFC
+SOM	206	Somalia	CAF
+RSA	76	South Africa	CAF
+KOR	59	South Korea	AFC
+SSD	154	South Sudan	CAF
+ESP	6	Spain	UEFA
+SRI	200	Sri Lanka	AFC
+SKN	107	St Kitts and Nevis	CONCACAF
+LCA	173	St Lucia	CONCACAF
+VIN	175	St Vincent Grenadines	CONCACAF
+SDN	117	Sudan	CAF
+SUR	157	Suriname	CONCACAF
+SWZ	133	Swaziland	CAF
+SWE	19	Sweden	UEFA
+SUI	8	Switzerland	UEFA
+SYR	74	Syria	AFC
+TAH	153	Tahiti	OFC
+TJK	124	Tajikistan	AFC
+TAN	146	Tanzania	CAF
+THA	129	Thailand	AFC
+TLS	190	Timor-Leste	AFC
+TOG	128	Togo	CAF
+TGA	206	Tonga	OFC
+TRI	79	Trinidad and Tobago	CONCACAF
+TUN	23	Tunisia	CAF
+TUR	38	Turkey	UEFA
+TKM	114	Turkmenistan	AFC
+TCA	201	Turks and Caicos	CONCACAF
+UAE	79	UAE	AFC
+UGA	78	Uganda	CAF
+UKR	35	Ukraine	UEFA
+URU	22	Uruguay	CONMEBOL
+VIR	198	US Virgin	CONCACAF
+USA	25	USA	CONCACAF
+UZB	72	Uzbekistan	AFC
+VAN	156	Vanuatu	OFC
+VEN	48	Venezuela	CONMEBOL
+VIE	113	Vietnam	AFC
+WAL	20	Wales	UEFA
+YEM	140	Yemen	AFC
+ZAM	77	Zambia	CAF
+ZIM	108	Zimbabwe	CAF
