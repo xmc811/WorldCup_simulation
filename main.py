@@ -9,7 +9,7 @@ np.random.seed(3)
 class Team:
     """To define a team"""
     
-    def __init__(self, name, rank):
+    def __init__(self, name, rank = 0):
         self.name = name
         self.rank = rank
         self.group_records = [self.name] + [0] * 5
@@ -150,24 +150,34 @@ class Group:
         while self.round < len(self.schedule):
             self.next_round()
 
+
 class Association:
 
     def __init__(self, ID, teams):
         self.ID = ID
         self.teams = teams
 
-    def setup_groups(self, num_groups, end = 0):
+    def setup_groups(self, num_groups, kick_num = 0):
         self.num_groups = num_groups
-        self.end = end
+        self.kick_num = kick_num
+        self.temp_teams = [i for i in self.teams]
 
-        if self.end != 0:
-            kick_list = random.sample(range(-1, self.end * -2 - 1, -1), self.end)
+        if self.kick_num != 0:
+            kick_list = random.sample(range(-1, self.kick_num * -2 - 1, -1), self.kick_num)
             for index in sorted(kick_list):
-                del self.teams[index]
-            print(str(len(self.teams)))
-            for i in self.teams:
-                print(i.name)
+                del self.temp_teams[index]
+        
+        print(str(len(self.teams)))
+        print(str(len(self.temp_teams)))
+        
+        print([i.name for i in self.temp_teams])
 
+        if len(self.temp_teams) % self.num_groups != 0:
+            print("Please adjust number of teams to be kicked.")
+
+        # else:
+
+            
 
 XXX = Team("NULL", 0)
 
@@ -229,16 +239,23 @@ AFC = Association("Asia", [IRN, AUS, JPN, KOR, CHN, SAU, UZB, PSE, SYR, ARE, IRQ
 
 AFC.setup_groups(10, 2)
 
+c = ["AAA", "BBB", "CCC"]
+d = ["Aaa", "Bbb", "Ccc"]
+e = [20, 30, 40]
+
+f = dict(zip(c, zip(d, e)))
+
+for u,v in f.items():
+    globals()[u] = Team(v[0], v[1])
+
+print(AAA.rank)
+
+
+# print(one)
+
 # group_a.setup_fixture()
 
 # group_a.finish_all_rounds()
-
-
-
-
-
-
-
 
 
 
