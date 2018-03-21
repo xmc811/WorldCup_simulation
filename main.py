@@ -2,22 +2,24 @@
 # This is a test file for class
 
 import random
-import numpy as np
-from pandas import DataFrame
-import pandas as pd
 import string
+import numpy as np
+import pandas as pd
+from pandas import DataFrame
 
-np.random.seed(10)
+np.random.seed(5)
 class Team:
-    """To define a team"""
+    """
+    To define a team, the name and the rank of the team are required.
+    """
     
     def __init__(self, name, rank = 0):
         self.name = name
         self.rank = rank
-        self.group_records = [self.name] + [0] * 5
+        self.group_records = [self.name] + [0]*5
 
     def init_records(self):
-        self.group_records = [self.name] + [0] * 5
+        self.group_records = [self.name] + [0]*5
 
 
 class Match:
@@ -37,29 +39,37 @@ class Match:
 
         else:
 
-            self.diff = abs(self.a.rank - self.b.rank) / 30
+            self.diff = abs(self.a.rank - self.b.rank)/40
             
             if self.rule == "home_away":
                 if  self.a.rank < self.b.rank:
-                    self.score_a = np.random.poisson(1 + self.diff + 0.4, 1)[0]
-                    self.score_b = np.random.poisson(1 / (1 + self.diff), 1)[0]
+                    self.score_a = np.random.poisson \
+                                   (1 + self.diff + 0.4, 1)[0]
+                    self.score_b = np.random.poisson \
+                                   (1/(1 + self.diff), 1)[0]
                 else:
-                    self.score_b = np.random.poisson(1 + self.diff - 0.2, 1)[0]
-                    self.score_a = np.random.poisson(1 / (1 + self.diff) + 0.2, 1)[0]
+                    self.score_b = np.random.poisson \
+                                   (1 + self.diff, 1)[0]
+                    self.score_a = np.random.poisson \
+                                   (1/(1 + self.diff) + 0.4, 1)[0]
 
             if self.rule == "neutral":
-                score_h = np.random.poisson(1 + self.diff, 1)[0]
-                score_l = np.random.poisson(1 / (1 + self.diff), 1)[0]
+                score_h = np.random.poisson(1 + self.diff + 0.2, 1)[0]
+                score_l = np.random.poisson(1/(1 + self.diff) + 0.2, 1)[0]
 
                 if  self.a.rank < self.b.rank:
-                    self.score_a = score_h
-                    self.score_b = score_l
-
+                    self.score_a, self.score_b = score_h, score_l
                 else:
-                    self.score_a = score_l
-                    self.score_b = score_h 
+                    self.score_a, self.score_b = score_l, score_h
 
-            print('{:>15}'.format(self.a.name)  + '{:^11}'.format(str(self.score_a) + " - " + str(self.score_b)) + self.b.name)
+            # print out the match scores
+            print('{:>15}'.format(self.a.name)               
+                  + '{:^11}'.format(str(self.score_a) 
+                  + " - " 
+                  + str(self.score_b)) 
+                  + self.b.name)
+
+            # record the points and goals
 
             if self.score_a > self.score_b:
 
@@ -97,16 +107,18 @@ class Group:
         schedule = []
         for turn in range(rounds):
             pairings = []
-            for i in range(int(len(self.teams) / 2)):
-                pairings.append((self.teams[i], self.teams[len(self.teams) - i - 1]))
+            for i in range(int(len(self.teams)/2)):
+                pairings.append((self.teams[i], 
+                                 self.teams[len(self.teams) - i - 1]))
             self.teams.insert(1, self.teams.pop())
             schedule.append(pairings)
 
         if self.rule == "home_away":
             for turn in range(rounds):
                 pairings = []
-                for i in range(int(len(self.teams) / 2)):
-                    pairings.append((self.teams[len(self.teams) - i - 1], self.teams[i]))
+                for i in range(int(len(self.teams)/2)):
+                    pairings.append((self.teams[len(self.teams) - i - 1], 
+                                     self.teams[i]))
                 self.teams.insert(1, self.teams.pop())
                 schedule.append(pairings)
 
@@ -122,14 +134,22 @@ class Group:
 
         table = [i.group_records for i in self.teams]
 
-        df = DataFrame.from_records(table)
+        self.df = DataFrame.from_records(table)
 
-        df[6] = df[4] - df[5]
-        df[7] = df[1] * 3 + df[2]
+        self.df[6] = self.df[4] - self.df[5]
+        self.df[7] = self.df[1]*3 + self.df[2]
 
-        df.columns = ['Team', 'W', 'D', 'L', 'GF', 'GA', 'GD', 'Pts']
+        global pts_columns
 
-        print(df.sort_values(by=['Pts','GD'], ascending=False))
+        pts_columns = ['Team', 'W', 'D', 'L', 'GF', 'GA', 'GD', 'Pts']
+
+        self.df.columns = pts_columns
+
+        self.df = self.df.sort_values(by=['Pts','GD', 'GF'], ascending = False)
+
+        print(self.df)
+
+        self.rank_list = self.df['Team'].tolist()
 
 
 
@@ -141,7 +161,8 @@ class Group:
             print("Group " + self.ID + ": Round " + str(self.round + 1))
             print("---------------")
             for i in range(len(self.schedule[0])):
-                Match(self.schedule[self.round][i][0], self.schedule[self.round][i][1]).start_match()
+                Match(self.schedule[self.round][i][0], 
+                      self.schedule[self.round][i][1]).start_match()
             print("---------------")
             self.round += 1
 
@@ -165,7 +186,7 @@ class Association:
         self.temp_teams = [i for i in self.teams]
 
         if self.kick_num != 0:
-            kick_list = random.sample(range(-1, self.kick_num * (-2) - 1, -1), self.kick_num)
+            kick_list = random.sample(range(-1, self.kick_num*(-2) - 1, -1),                      self.kick_num)
             for index in sorted(kick_list):
                 del self.temp_teams[index]
 
@@ -174,10 +195,7 @@ class Association:
         code_list = assoc_df['Code'].tolist()
         
         x = self.num_groups
-        y = int(len(self.temp_teams) / x)
-
-        print(x)
-        print(y)
+        y = int(len(self.temp_teams)/x)
 
         all_index = []
         
@@ -185,34 +203,90 @@ class Association:
             b = list(np.random.permutation(x))
             all_index.append(b)
 
-        group_name_list = [self.ID + "_Group_" + i for i in list(string.ascii_uppercase)]
+        group_name_list = [self.ID 
+                           + "_Group_" 
+                           + i for i in list(string.ascii_uppercase)]
         
         for m, n in zip(list(range(x)), group_name_list):
            
             group_team = []
             
             for i in range(y):
-                group_team.append(eval(code_list[all_index[i][m] + x * i]))
+                group_team.append(eval(code_list[all_index[i][m] + x*i]))
 
             globals()[n] = Group(n, group_team)
 
-        group_names = group_name_list[:x]
+        # To print out the grouping results
+
+        self.group_names = group_name_list[:x]
         
         table = []
 
-        for k in group_names:
-            
+        for k in self.group_names:
             team = []
-            
             for l in eval(k).teams:
                 team.append(l.name)
             table.append(team)
         
         grouping_df = DataFrame.from_records(table).transpose()
 
-        grouping_df.columns = group_names
+        grouping_df.columns = self.group_names
 
         print(grouping_df)
+
+        # To setup the fixutres for all groups
+
+        for k in self.group_names:
+            eval(k).setup_fixture()
+
+
+    def next_round(self, show_qual = 2):
+        
+        for k in self.group_names:
+            eval(k).next_round()
+
+
+    def finish_all_rounds(self, show_qual = 2, tie = False):
+        
+        qual_list = []
+
+        for k in self.group_names:
+            eval(k).finish_all_rounds()
+            qual_list.append(eval(k).rank_list[:(show_qual - tie)])
+
+        for k in self.group_names:
+            print(eval(k).ID + " --- Final")
+            print("---------------")
+            eval(k).print_table()
+            print("===============")
+
+        print()
+        print("Qualified teams:")
+        
+        for i in range(len(qual_list[0])):
+            for m in range(len(qual_list)):
+                print(qual_list[m][i], end = "  ")
+
+        print()
+
+        if tie == True:
+
+            tie_break = []
+
+            for k in self.group_names:
+                
+                tie_break.append(list(eval(k).df.iloc[show_qual - 1,]))
+
+            tie_df = DataFrame.from_records(tie_break)
+
+            tie_df.columns = pts_columns
+
+            print()
+            print("Tie Break for " + str(show_qual) + " place:")
+            print("---------------")
+
+            print(tie_df.sort_values(by=['Pts','GD', 'GF'], ascending = False))
+
 
 
 # Load team data from file
@@ -247,11 +321,11 @@ for u in assoc_list:
 
 
 
-AFC.setup_groups(1)
+UEFA.setup_groups(10)
 
-AFC_Group_A.setup_fixture()
+# AFC.next_round()
 
-AFC_Group_A.finish_all_rounds()
+UEFA.finish_all_rounds(show_qual = 3, tie = True)
 
 # UEFA_Group_A.setup_fixture()
 
@@ -264,6 +338,3 @@ AFC_Group_A.finish_all_rounds()
 # group_a.setup_fixture()
 
 # group_a.finish_all_rounds()
-
-
-
