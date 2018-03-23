@@ -39,7 +39,7 @@ class Match:
 
         else:
 
-            self.diff = abs(self.a.rank - self.b.rank)/40
+            self.diff = abs(self.a.rank - self.b.rank)/30
             
             if self.rule == "home_away":
                 if  self.a.rank < self.b.rank:
@@ -255,10 +255,13 @@ class Association:
             qual_list.append(eval(k).rank_list[:(show_qual - tie)])
 
         for k in self.group_names:
+            
+            print()
             print(eval(k).ID + " --- Final")
             print("---------------")
             eval(k).print_table()
-            print("===============")
+            print()
+
 
         print()
         print("Qualified teams:")
@@ -321,11 +324,11 @@ for u in assoc_list:
 
 
 
-UEFA.setup_groups(10)
+AFC.setup_groups(8)
 
 # AFC.next_round()
 
-UEFA.finish_all_rounds(show_qual = 3, tie = True)
+AFC.finish_all_rounds(show_qual = 2, tie = True)
 
 # UEFA_Group_A.setup_fixture()
 
